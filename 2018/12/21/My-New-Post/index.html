@@ -187,7 +187,7 @@
     <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
     <script>
     var gitment = new Gitment({
-        id: 'My New Post',
+        id: "{{ page.url, prepend: site.baseurl | prepend: site.url }}", 
         owner: 'nateanl',
         repo: 'nateanl.github.io',
         oauth: {
