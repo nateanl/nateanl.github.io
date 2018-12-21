@@ -182,6 +182,25 @@
 
 
 
+    <div id="gitment_container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+        id: 'My New Post',
+        owner: 'nateanl',
+        repo: 'nateanl.github.io',
+        oauth: {
+            client_id: 'da6962dff0ae3c1e1317',
+            client_secret: 'c2ac2dcfa761755fed104920970c5cd1cd150ef2',
+        },
+    })
+    gitment.render('gitment_container')
+    </script>
+
+
+
+
           <div class="main-footer">
   
     © 2018 Percieve Signal of Code - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
