@@ -171,6 +171,7 @@
         owner: 'nateanl',
         admin: ['nateanl'],
         id: location.pathname,
+        distractionFreeMode: true,
       })
       gitalk.render('gitalk-container')           
      </script>
@@ -178,7 +179,7 @@
   <footer class="article-footer">
     
   <div class="cc">
-    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="Attribution-ShareAlike">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.d" target="_blank" title="Attribution-ShareAlike">
       <img src="/images/cc/cc.png">
       
           <img src="/images/cc/by.png">
@@ -276,7 +277,22 @@
 
 
 <script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
-<script src="/scripts/main.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/scripts/main.js"></script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
