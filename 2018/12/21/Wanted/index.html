@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -20,7 +20,7 @@
 <meta property="og:description" content="If you are an undergraduate or a master student and want to do a project about machine learning + signal processing (non computer vision project), you are welcome to contact me by commenting on this">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://virtuousgirls.files.wordpress.com/2014/07/you-are-wanted.jpg">
-<meta property="og:updated_time" content="2018-12-23T13:29:33.654Z">
+<meta property="og:updated_time" content="2018-12-23T21:15:45.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="You Are Wanted!">
 <meta name="twitter:description" content="If you are an undergraduate or a master student and want to do a project about machine learning + signal processing (non computer vision project), you are welcome to contact me by commenting on this">
@@ -35,7 +35,7 @@
 
 
 <link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
-<link rel="stylesheet" href="/styles/main.css">
+<link rel="stylesheet" href="/styles/main.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -44,7 +44,7 @@
 
 </head>
 <body class="monochrome">
-  <div class="mobile-header">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header">
   <button class="sidebar-toggle" type="button">
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
@@ -85,21 +85,21 @@
           
             
               <li class="category-list-container">
-                <a href="javascript:;">類別</a>
+                <a href="javascript:;">Category</a>
                 
               </li>
             
           
             
               <li class="tag-list-container">
-                <a href="javascript:;">標籤</a>
+                <a href="javascript:;">Tag</a>
                 
               </li>
             
           
             
               <li class="archive-list-container">
-                <a href="javascript:;">彙整</a>
+                <a href="javascript:;">Archive</a>
                 <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">2</span></li></ul>
               </li>
             
@@ -116,7 +116,7 @@
           
             
               <li>
-                <a href="/about" title="About">About</a>
+                <a href="/about" title="About Me">About Me</a>
               </li>
             
           
@@ -185,7 +185,7 @@
   <footer class="article-footer">
     
   <div class="cc">
-    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="姓名標示-相同方式分享">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="Attribution-ShareAlike">
       <img src="/images/cc/cc.png">
       
           <img src="/images/cc/by.png">
@@ -193,7 +193,7 @@
           <img src="/images/cc/sa.png">
       
       <span>
-        本著作係採用創用 CC 姓名標示-相同方式分享 4.0 國際 授權條款授權.
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
       </span>
     </a>
   </div>
@@ -230,11 +230,9 @@
 
           <div class="main-footer">
   
-    © 2018  - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+    © 2018 
   
 </div>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
       
     </div>
   </div>
@@ -312,5 +310,20 @@
 <script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
 <script src="/scripts/main.js"></script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

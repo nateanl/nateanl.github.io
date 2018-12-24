@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 <title>
   
-    彙整: 2018
+    Archive: 2018
   
 </title>
 
@@ -29,7 +29,7 @@
 
 
 <link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
-<link rel="stylesheet" href="/styles/main.css">
+<link rel="stylesheet" href="/styles/main.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -38,7 +38,7 @@
 
 </head>
 <body class="monochrome">
-  <div class="mobile-header">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header">
   <button class="sidebar-toggle" type="button">
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
@@ -79,21 +79,21 @@
           
             
               <li class="category-list-container">
-                <a href="javascript:;">類別</a>
+                <a href="javascript:;">Category</a>
                 
               </li>
             
           
             
               <li class="tag-list-container">
-                <a href="javascript:;">標籤</a>
+                <a href="javascript:;">Tag</a>
                 
               </li>
             
           
             
               <li class="archive-list-container">
-                <a href="javascript:;">彙整</a>
+                <a href="javascript:;">Archive</a>
                 <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">2</span></li></ul>
               </li>
             
@@ -110,7 +110,7 @@
           
             
               <li>
-                <a href="/about" title="About">About</a>
+                <a href="/about" title="About Me">About Me</a>
               </li>
             
           
@@ -186,7 +186,7 @@
 </ul>
           <p>
             <a href="/2018/12/21/Wanted/">
-              閱讀全文
+              Read More
             </a>
           </p>
         
@@ -203,7 +203,7 @@
     <div class="post-list-item article">
       <h3 class="article-header">
         <a href="/2018/12/21/My-New-Post/">
-  My New Post
+  Latex Test
 </a>
 
       </h3>
@@ -221,7 +221,7 @@
       </div>
       <div class="article-entry">
         
-          
+          <script type="math/tex; mode=display">e^{i\pi} + 1 = 0</script>
         
       </div>
     </div>
@@ -235,11 +235,9 @@
 
           <div class="main-footer">
   
-    © 2018  - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+    © 2018 
   
 </div>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
       
     </div>
   </div>
@@ -317,5 +315,20 @@
 <script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
 <script src="/scripts/main.js"></script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
