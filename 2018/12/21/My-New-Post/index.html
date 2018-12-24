@@ -19,7 +19,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="e^{i\pi} + 1 = 0">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-24T05:47:23.006Z">
+<meta property="og:updated_time" content="2018-12-24T14:58:03.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Latex Test">
 <meta name="twitter:description" content="e^{i\pi} + 1 = 0">
@@ -190,26 +190,22 @@
 
 
 
-
-
-    <div id="gitment_container"></div>
-    <link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
-    <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
-    <script>
-    var gitment = new Gitment({
-        id: '{{ page.title }}',
-        owner: 'nateanl',
+{% elseif theme.gitalk.enable %}
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        id: window.location.pathname,
         repo: 'nateanl.github.io',
-        oauth: {
-            client_id: 'da6962dff0ae3c1e1317',
-            client_secret: 'c2ac2dcfa761755fed104920970c5cd1cd150ef2',
-        },
+        owner: 'nateanl',
+        admin: 'nateanl'
     })
-    gitment.render('gitment_container')
-    </script>
-
-
-
+    gitalk.render('gitalk-container')
+</script>
+{% endif %}
           <div class="main-footer">
   
     © 2018 
