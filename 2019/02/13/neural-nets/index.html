@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Zhaoheng Ni">
 <meta property="og:description" content="Recently I read a post by Denny Britz about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-13T22:06:10.584Z">
+<meta property="og:updated_time" content="2019-02-13T22:10:49.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Neural Networks from Scratch">
 <meta name="twitter:description" content="Recently I read a post by Denny Britz about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch">
@@ -306,7 +306,22 @@
 
 
 <script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
-<script src="/scripts/main.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/scripts/main.js"></script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
