@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Zhaoheng Ni">
 <meta property="og:description" content="Recently I read a post by Denny Britz about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-13T21:04:29.082Z">
+<meta property="og:updated_time" content="2019-02-13T21:07:08.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Neural Networks from Scratch">
 <meta name="twitter:description" content="Recently I read a post by Denny Britz about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch">
@@ -164,6 +164,7 @@
     <p>Recently I read a post by <a href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/" target="_blank" rel="noopener">Denny Britz</a> about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch of hours to understand the gradients, chain rule, back-propagation, and so on. So it’s good to write a “Neural-Net for Baby” (NB) post to help myself understand it better.</p>
 <p>Okay, start with one-layer one-output neural net. We can regard the model as a linear regression model.</p>
 <script type="math/tex; mode=display">o = \sigma(\sum_{i}^{N}w_ix_i + b)</script><p>$x$ is a N $\times$ 1 input vector, $w$ is a N $\times$ 1 weight vector, and $b$ is a bias scatter. $\sigma$ is an activation function (we will talk about it later).</p>
+<p>&lt; !—more—&gt;</p>
 <p>Think in a geometry way, $w$ is the transformation matrix which projects the vector $x$ to a 1-D space. $b$ is the shift scatter (or vector in multi-units cases) which shifts the output in the new space.</p>
 <p>Imagine you are playing golf, there are two holes: A and B. There are two kinds of balls: red and black. The golf club is the neural network. Every time you swing the club, the red ball will always falls into hole A, while the black ball will always falls into hole B.</p>
 <p>Some people tends to explain the weight value as the importance of the input feature value. What if the feature value is negative and the weight is negative too? It doesn’t mean anything if the weight value is 0 also. In fact updating the weights is updating the bases of the hyperspace, the space where the input vector is projected to.</p>
