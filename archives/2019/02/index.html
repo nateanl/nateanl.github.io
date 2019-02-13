@@ -8,13 +8,13 @@
 
 <title>
   
-    Archive: 2018/12
+    Archive: 2019/2
   
 </title>
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Zhaoheng Ni">
-<meta property="og:url" content="https://nizhaoheng.com/archives/2018/12/index.html">
+<meta property="og:url" content="https://nizhaoheng.com/archives/2019/02/index.html">
 <meta property="og:site_name" content="Zhaoheng Ni">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       
       <section class="archives-wrap">
         <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
+          <h1><a href="/archives/2019" class="archive-year">2019</a></h1>
         </div>
         <div class="post-list">
     
@@ -150,26 +150,53 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
-        <a href="/2018/12/21/My-New-Post/">
-  Latex Test
+        <a href="/2019/02/13/neural-nets/">
+  Build Neural Networks from Scratch
 </a>
 
       </h3>
       
 
       <div class="article-info">
-        <a href="/2018/12/21/My-New-Post/"><span class="article-date">
-  2018-12-21
+        <a href="/2019/02/13/neural-nets/"><span class="article-date">
+  2019-02-13
 </span>
 </a>
         
 
         
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dnn/">dnn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/">pytorch</a></li></ul>
+	</span>
+
 
       </div>
       <div class="article-entry">
         
-          <script type="math/tex; mode=display">e^{i\pi} + 1 = 0</script>
+          <p>Recently I read a post by <a href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/" target="_blank" rel="noopener">Denny Britz</a> about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch of hours to understand the gradients, chain rule, back-propagation, and so on. So it’s good to write a “Neural-Net for Baby” (NB) post to help myself understand it better.</p>
+<p>Okay, start with one-layer one-output neural net. We can regard the model as a linear regression model.</p>
+<script type="math/tex; mode=display">o = \sigma(\sum_{i}^{N}w_ix_i + b)</script><p>$x$ is a N $\times$ 1 input vector, $w$ is a N $\times$ 1 weight vector, and $b$ is a bias scatter. $\sigma$ is an activation function (we will talk about it later).</p>
+<p>Think in a geometry way, $w$ is the transformation matrix which projects the vector $x$ to a 1-D space. $b$ is the shift scatter (or vector in multi-units cases) which shifts the output in the new space.</p>
+<p>Imagine you are playing golf, there are two holes: A and B. There are two kinds of balls: red and black. The golf club is the neural network. Every time you swing the club, the red ball will always falls into hole A, while the black ball will always falls into hole B.</p>
+<p>Some people tends to explain the weight value as the importance of the input feature value. What if the feature value is negative and the weight is negative too? It doesn’t mean anything if the weight value is 0 also. In fact updating the weights is updating the bases of the hyperspace, the space where the input vector is projected to.</p>
+<h3 id="Back-Propagation"><a href="#Back-Propagation" class="headerlink" title="Back Propagation"></a>Back Propagation</h3><p>Now we know neural network is basically doing projection (linear way or non-linear way). But how to train the network, to make it useful?</p>
+<p>Start with a simple example: $o = ax$. if $x$ is 1, $y$ is 2, $a$ is 1. $o$ is 1, but we want the result as close to $y$ as possible. So there is a difference between the output $o$ and the target $y$. We use mean square error as the loss function to compute the loss:</p>
+<script type="math/tex; mode=display">L = (y-o)^2</script><p>The gradient is $\frac{\partial L}{\partial o}$ which is $2(o-y)$ which is -2. This means o needs to be larger to make the gradient decrease. Since we want to update $a$, we need to compute the gradient of a:</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial a} = \frac{\partial L}{\partial o} \times \frac{\partial o}{\partial a} = 2(o-y)x</script><p>So the gradient for $a$ is -2, and we can update it by this formula:</p>
+<script type="math/tex; mode=display">a = a - \eta  \frac{\partial L}{\partial a}</script><p>$\eta$ is called learning rate, because we want to gradually make small changes on the weight so that the output will finally be close to the target.</p>
+<p>Set $\eta$ to be 0.1, the updated $a$ will be 1.2. The new output $o$ will be 1.2. The new loss will be 0.64, which is smaller than before! After several iterations, we can make the output close to the target.</p>
+<h3 id="Multi-Layer-Network"><a href="#Multi-Layer-Network" class="headerlink" title="Multi-Layer Network"></a>Multi-Layer Network</h3><p>If the neural networks has more than one layer, how can we train the model? According to the chain rule, it is easy AF.</p>
+<p>I really like to describe it in a matrix way because you can see how beautiful the formula is. But let’s start with this example:</p>
+<script type="math/tex; mode=display">o_2 = W_2(W_1x+b_1)+b_2</script><script type="math/tex; mode=display">o_1 = W_1x+b_1</script><p>$x$ is a $M$ dimensional vector. $W_1$ is a $M \times N$ matrix, $W_2$ is a $N \times K$ matrix, $b_1$ is a $N$ dimensional vector, and $b_2$ is a $K$ dimensional vector. The loss function is still mean square error:</p>
+<script type="math/tex; mode=display">L = (y-o_2)^2</script><p>The gradient for $W_2$ is:</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial W_2^{n,k}} = \frac{\partial L}{\partial o_2^k} \frac{\partial o_2^k}{\partial W_2^{n,k}} = 2(o_2^k-y^k)o_1^n</script><p>$n$ is the index of $o_1$. $k$ is the index of $o_2$. So the gradient of $W_2$ is a $N\times K$ matrix:</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial W_2} = 2 o_1^T\times(o_2-y)</script><p>The gradient for $W_1$ is:</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial W_1^{m,n}} = \sum_k{\frac{\partial L}{\partial o_2^k}} \frac{\partial o_2^k}{\partial o_1^n} \frac{\partial o_i^n}{\partial W_1^{m,n}}
+= \sum_k{2(o_2^k-y^k)W_2^{n,k}} x^m</script><p>It can also be transformed to a matrix form:</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial W_1} =2x^T(o_2-y)W_2^T</script><p>After we got these gradient matrix, we can update those weights by using the back-propagation method. In Python you can just apply numpy to do it.</p>
+<script type="math/tex; mode=display">W_1 = W_1 - \eta \frac{\partial L}{\partial W_1}
+= W_1 - 2\eta x^T(o_2-y)W_2^T</script><p>So, in this way, we can build our neural network model by using pure Python! The only problem is whenever we create a new model, we have to create a new backward function which contains a bunch of redundant codes. <a href="https://chainer.org/" target="_blank" rel="noopener">Chainer</a> is the first framework which applies the “autograd”: automatic differentiation method to calculate the gradients automatically. I won’t recommend building such autograd things from scratch (There is a Chinese slang: <font color="red">人生苦短，我用PyTorch </font>). But it is a good start to follow Denny’s notebook and build a simple two-layer neural network from scratch, and you can understand the idea of NN in a mathematical way.</p>
+
         
       </div>
     </div>
