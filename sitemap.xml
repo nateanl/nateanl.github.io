@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nizhaoheng.com/about/index.html</loc>
+    
+    <lastmod>2019-04-24T13:29:55.853Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nizhaoheng.com/2019/02/25/word2vec/</loc>
     
     <lastmod>2019-04-24T03:01:55.981Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://nizhaoheng.com/2018/12/21/My-New-Post/</loc>
     
     <lastmod>2018-12-24T14:58:03.355Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nizhaoheng.com/about/index.html</loc>
-    
-    <lastmod>2018-12-24T04:48:35.790Z</lastmod>
     
   </url>
   
