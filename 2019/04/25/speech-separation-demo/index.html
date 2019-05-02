@@ -12,17 +12,20 @@
   
 </title>
 
-<meta name="description" content="To be continued…">
+<meta name="description" content="Speech separation refers to the task of isolating speech of interest in a multi-talker environment. Most methods apply real-valued Time-Frequency (T-F) Masks to the Short-time Fourier Transform (STFT)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Demo for Single-Channel Speech Separation">
 <meta property="og:url" content="https://nizhaoheng.com/2019/04/25/speech-separation-demo/index.html">
 <meta property="og:site_name" content="Zhaoheng Ni">
-<meta property="og:description" content="To be continued…">
+<meta property="og:description" content="Speech separation refers to the task of isolating speech of interest in a multi-talker environment. Most methods apply real-valued Time-Frequency (T-F) Masks to the Short-time Fourier Transform (STFT)">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-04-25T23:11:35.456Z">
+<meta property="og:image" content="https://nizhaoheng.com/images/mix.png">
+<meta property="og:image" content="https://nizhaoheng.com/images/irm.png">
+<meta property="og:updated_time" content="2019-05-02T00:42:10.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Demo for Single-Channel Speech Separation">
-<meta name="twitter:description" content="To be continued…">
+<meta name="twitter:description" content="Speech separation refers to the task of isolating speech of interest in a multi-talker environment. Most methods apply real-valued Time-Frequency (T-F) Masks to the Short-time Fourier Transform (STFT)">
+<meta name="twitter:image" content="https://nizhaoheng.com/images/mix.png">
 
 
   <link rel="alternative" href="/atom.xml" title="Zhaoheng Ni" type="application/atom+xml">
@@ -153,7 +156,68 @@
 
   </div>
   <div class="article-entry">
-    <p>To be continued…<br><a id="more"></a></p>
+    <p>Speech separation refers to the task of isolating speech of interest in a multi-talker environment.</p>
+<p>Most methods apply real-valued Time-Frequency (T-F) Masks to the Short-time Fourier Transform (STFT) of the noisy speech to get the estimated clean speech. The Idea Ratio Mask (IRM) is defined as</p>
+<script type="math/tex; mode=display">IRM = \frac{|S|}{|X|},</script><p>where $|S|$ and $|Y|$ is the magnitude of clean speech and noisy speech respectively.</p>
+<p align="center"> <img src="/images/mix.png" width="600"> </p>
+
+<a id="more"></a>
+<p>The mask value is close to 1 if the T-F bin is dominated by the speaker, 0 otherwise.</p>
+<p align="center"> <img src="/images/irm.png" width="600"> </p>
+
+
+<p>Since the clean STFT estimate is constructed by $IRM \odot X$, there exists unavoidable phase difference in the masking method.</p>
+<p>We propose a novel phase estimation method which estimates the phase based on the T-F mask (The paper and code will be released later).</p>
+<p>To evaluate the separation performance of our method, we compare our results with recent published ones including:</p>
+<ul>
+<li>Deep Clustering</li>
+<li>Chimera++ Network with MSA loss function</li>
+<li>Chimera++ Network with tPSA loss function</li>
+</ul>
+<p>Here are the separation demos for different methods. The testing utterance is from WSJ0-2mix dataset.</p>
+<center>
+<table>
+    <thead>
+    <tr>
+        <th>Mixture Utterance</th> <th>&nbsp; &nbsp; &nbsp; &nbsp;</th><th align="right">tt/mix/050a0508_1.4465_22gc0102_-1.4465.wav</th>
+    </tr>
+    <tr>
+     <th>  </th> <th> </th><th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/mixture.mp3"></audio> </th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+ </table>
+ </center>
+
+
+<h3 id="Separation-Results-of-different-models"><a href="#Separation-Results-of-different-models" class="headerlink" title="Separation Results of different models"></a>Separation Results of different models</h3><table>
+    <thead>
+        <tr>
+            <th>Model</th> <th>Average SDR</th><th align="center">Speaker 1</th> <th align="center">Speaker 2</th>
+        </tr>
+        <tr>
+           <th> Deep Clustering</th> <th>9.2 dB</th><th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/dc_s1.mp3"></audio> </th> <th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/dc_s2.mp3"></audio> </th>
+        </tr>
+        <tr>
+           <th> Chimera++ MSA</th> <th>10.2 dB</th><th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/chimera_msa_s1.mp3"></audio> </th> <th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/chimera_msa_s2.mp3"></audio> </th>
+        </tr>
+        <tr>
+        <th> Chimera++ tPSA</th> <th>10.3 dB</th><th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/chimera_tpsa_s1.mp3"></audio> </th> <th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/chimera_tpsa_s2.mp3"></audio> </th>
+        </tr>
+        <tr>
+        <th>Phase Estimation</th> <th>13.6 dB</th><th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/phase_s2.mp3"></audio> </th> <th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/phase_s1.mp3"></audio> </th>
+        </tr>
+      <tr>
+        <th>Clean Reference</th> <th>301 dB (basically $+\infty$)</th><th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/ref_s2.mp3"></audio> </th> <th><audio controls="controls" style="width: 200px;"><source type="audio/mp3" src="/audios/ref_s1.mp3"></audio> </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>Hershey, John R., Zhuo Chen, Jonathan Le Roux, and Shinji Watanabe. “Deep clustering: Discriminative embeddings for segmentation and separation.” In 2016 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 31-35. IEEE, 2016.<br>Yu, Dong, Morten Kolbæk, Zheng-Hua Tan, and Jesper Jensen. “Permutation invariant training of deep models for speaker-independent multi-talker speech separation.” In 2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 241-245. IEEE, 2017.<br>Wang, Zhong-Qiu, Jonathan Le Roux, and John R. Hershey. “Alternative objective functions for deep clustering.” In 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 686-690. IEEE, 2018.<br>Wang, Zhong-Qiu, Jonathan Le Roux, DeLiang Wang, and John R. Hershey. “End-to-end speech separation with unfolded iterative phase reconstruction.” arXiv preprint arXiv:1804.10204 (2018).<br>Paszke, Adam, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer. “Automatic differentiation in pytorch.” (2017).<br>Raffel, Colin, Brian McFee, Eric J. Humphrey, Justin Salamon, Oriol Nieto, Dawen Liang, Daniel PW Ellis, and C. Colin Raffel. “mir_eval: A transparent implementation of common MIR metrics.” In In Proceedings of the 15th International Society for Music Information Retrieval Conference, ISMIR. 2014.<br>McFee, Brian, Colin Raffel, Dawen Liang, Daniel PW Ellis, Matt McVicar, Eric Battenberg, and Oriol Nieto. “librosa: Audio and music signal analysis in python.” In Proceedings of the 14th python in science conference, pp. 18-25. 2015.</p>
 
   </div>
   
