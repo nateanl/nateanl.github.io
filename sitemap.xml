@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nizhaoheng.com/2019/02/13/neural-nets/</loc>
+    
+    <lastmod>2019-05-02T01:02:33.089Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nizhaoheng.com/2019/04/25/speech-separation-demo/</loc>
     
     <lastmod>2019-05-02T00:53:36.767Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://nizhaoheng.com/publications/index.html</loc>
     
     <lastmod>2019-04-25T12:54:05.267Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nizhaoheng.com/2019/02/13/neural-nets/</loc>
-    
-    <lastmod>2019-02-13T22:10:49.604Z</lastmod>
     
   </url>
   

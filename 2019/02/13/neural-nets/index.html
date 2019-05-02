@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Zhaoheng Ni">
 <meta property="og:description" content="Recently I read a post by Denny Britz about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-13T22:10:49.604Z">
+<meta property="og:updated_time" content="2019-05-02T01:02:33.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Neural Networks from Scratch">
 <meta name="twitter:description" content="Recently I read a post by Denny Britz about implementing a neural network from scratch in Python. I was pretty inspired by it. I still remember the days when I tried to study NN and it took me a bunch">
@@ -175,10 +175,17 @@
 <p>I really like to describe it in a matrix way because you can see how beautiful the formula is. But let’s start with this example:</p>
 <script type="math/tex; mode=display">o_2 = W_2(W_1x+b_1)+b_2</script><script type="math/tex; mode=display">o_1 = W_1x+b_1</script><p>$x$ is a $M$ dimensional vector. $W_1$ is a $M \times N$ matrix, $W_2$ is a $N \times K$ matrix, $b_1$ is a $N$ dimensional vector, and $b_2$ is a $K$ dimensional vector. The loss function is still mean square error:</p>
 <script type="math/tex; mode=display">L = (y-o_2)^2</script><p>The gradient for $W_2$ is:</p>
-<script type="math/tex; mode=display">\frac{\partial L}{\partial W_2^{n,k}} = \frac{\partial L}{\partial o_2^k} \frac{\partial o_2^k}{\partial W_2^{n,k}} = 2(o_2^k-y^k)o_1^n</script><p>$n$ is the index of $o_1$. $k$ is the index of $o_2$. So the gradient of $W_2$ is a $N\times K$ matrix:</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+\frac{\partial L}{\partial W_2^{n,k}} &= &\frac{\partial L}{\partial o_2^k} \frac{\partial o_2^k}{\partial W_2^{n,k}}\\
+&= &2(o_2^k-y^k)o_1^n
+\end{gathered}</script><p>$n$ is the index of $o_1$. $k$ is the index of $o_2$. So the gradient of $W_2$ is a $N\times K$ matrix:</p>
 <script type="math/tex; mode=display">\frac{\partial L}{\partial W_2} = 2 o_1^T\times(o_2-y)</script><p>The gradient for $W_1$ is:</p>
-<script type="math/tex; mode=display">\frac{\partial L}{\partial W_1^{m,n}} = \sum_k{\frac{\partial L}{\partial o_2^k}} \frac{\partial o_2^k}{\partial o_1^n} \frac{\partial o_i^n}{\partial W_1^{m,n}}
-= \sum_k{2(o_2^k-y^k)W_2^{n,k}} x^m</script><p>It can also be transformed to a matrix form:</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+\frac{\partial L}{\partial W_1^{m,n}} &=&\sum_k{\frac{\partial L}{\partial o_2^k}} \frac{\partial o_2^k}{\partial o_1^n} \frac{\partial o_i^n}{\partial W_1^{m,n}}\\
+ &=&\sum_k{2(o_2^k-y^k)W_2^{n,k}} x^m
+ \end{gathered}</script><p>It can also be transformed to a matrix form:</p>
 <script type="math/tex; mode=display">\frac{\partial L}{\partial W_1} =2x^T(o_2-y)W_2^T</script><p>After we got these gradient matrix, we can update those weights by using the back-propagation method. In Python you can just apply numpy to do it.</p>
 <script type="math/tex; mode=display">W_1 = W_1 - \eta \frac{\partial L}{\partial W_1}
 = W_1 - 2\eta x^T(o_2-y)W_2^T</script><p>So, in this way, we can build our neural network model by using pure Python! The only problem is whenever we create a new model, we have to create a new backward function which contains a bunch of redundant codes. <a href="https://chainer.org/" target="_blank" rel="noopener">Chainer</a> is the first framework which applies the “autograd”: automatic differentiation method to calculate the gradients automatically. I won’t recommend building such autograd things from scratch (There is a Chinese slang: <font color="red">人生苦短，我用PyTorch </font>). But it is a good start to follow Denny’s notebook and build a simple two-layer neural network from scratch, and you can understand the idea of NN in a mathematical way.</p>
