@@ -10,7 +10,7 @@
   
   <title>
     
-      Zhaoheng Ni
+      Tags | Zhaoheng Ni
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -25,31 +25,9 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
   
   
-    <script src="/js/gitment.js"></script>
+    <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
-  
-    <!-- MathJax support START -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src></script>
-    <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -142,75 +120,93 @@
 </header>
 
     <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">back to the future...</p>
+  <h2>Tags</h2>
+  <p class="post-date">less is more</p>
 </div>
-<main class="app-body" id="archives">
-  
-  
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2020
-  </h1>
-  <div class="section-list">
+<main class="app-body">
+  <div id="tag-cloud">
     
+      <a class="tag3" data-name="tag-latex">latex</a>
     
-      <div class="section-list-item">
-        <a href="/2020/03/05/onssen/" class="archive-title">Onssen: an open-source speech separation and enhancement library</a>
-        <p class="archive-date">03-05</p>
-      </div>
+      <a class="tag1" data-name="tag-dnn">dnn</a>
+    
+      <a class="tag1" data-name="tag-nlp">nlp</a>
+    
+      <a class="tag1" data-name="tag-pytorch">pytorch</a>
     
   </div>
-</section>
   
-    <section class="time-section">
-  <h1 class="section-year">
-    2019
-  </h1>
-  <div class="section-list">
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-latex">latex</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/12/21/latex/">Latex Test</a>
+          </li>
+        </ul>
+        
+    </div>
     
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-dnn">dnn</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2020/03/05/onssen/">Onssen: an open-source speech separation and enhancement library</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/04/25/speech-separation-demo/">Mask-dependent phase estimation for monaural speaker separation</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/02/13/neural-nets/">Build neural networks from scratch</a>
+          </li>
+        </ul>
+        
+    </div>
     
-      <div class="section-list-item">
-        <a href="/2019/04/25/speech-separation-demo/" class="archive-title">Mask-dependent phase estimation for monaural speaker separation</a>
-        <p class="archive-date">04-25</p>
-      </div>
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-nlp">nlp</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/02/25/word2vec/">Word2vec, skip-gram, and negative sampling</a>
+          </li>
+        </ul>
+        
+    </div>
     
-      <div class="section-list-item">
-        <a href="/2019/02/25/word2vec/" class="archive-title">Word2vec, skip-gram, and negative sampling</a>
-        <p class="archive-date">02-25</p>
-      </div>
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-pytorch">pytorch</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/02/13/neural-nets/">Build neural networks from scratch</a>
+          </li>
+        </ul>
+        
+    </div>
     
-      <div class="section-list-item">
-        <a href="/2019/02/13/neural-nets/" class="archive-title">Build neural networks from scratch</a>
-        <p class="archive-date">02-13</p>
-      </div>
-    
-  </div>
-</section>
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2018
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2018/12/21/latex/" class="archive-title">Latex Test</a>
-        <p class="archive-date">12-21</p>
-      </div>
-    
-  </div>
-</section>
-  
 </main>
 
 <script>
   (function () {
-    var url = 'nateanl.github.io/archives/2019/02/index.html';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
+    var url = 'nateanl.github.io/tags/index.html'
+    $('#article-banner').geopattern(url)
+    $('.header').removeClass('fixed-header')
+
+    var tag = location.hash.replace('#', '')
+    if (tag) {
+      var tagId = "#tag-" + tag;
+      $("html, body").animate({
+        scrollTop: $(tagId).offset().top
+      }, 400)
+    }
   })();
 </script>
 

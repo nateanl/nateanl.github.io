@@ -10,7 +10,7 @@
   
   <title>
     
-      Zhaoheng Ni
+      Project | Zhaoheng Ni
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -25,31 +25,9 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
   
   
-    <script src="/js/gitment.js"></script>
+    <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
-  
-    <!-- MathJax support START -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src></script>
-    <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -142,76 +120,54 @@
 </header>
 
     <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">back to the future...</p>
+  <h2>Projects</h2>
+  <p class="post-date">GitHub Repos</p>
 </div>
-<main class="app-body" id="archives">
-  
-  
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2020
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2020/03/05/onssen/" class="archive-title">Onssen: an open-source speech separation and enhancement library</a>
-        <p class="archive-date">03-05</p>
-      </div>
-    
-  </div>
-</section>
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2019
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2019/04/25/speech-separation-demo/" class="archive-title">Mask-dependent phase estimation for monaural speaker separation</a>
-        <p class="archive-date">04-25</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2019/02/25/word2vec/" class="archive-title">Word2vec, skip-gram, and negative sampling</a>
-        <p class="archive-date">02-25</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2019/02/13/neural-nets/" class="archive-title">Build neural networks from scratch</a>
-        <p class="archive-date">02-13</p>
-      </div>
-    
-  </div>
-</section>
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2018
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2018/12/21/latex/" class="archive-title">Latex Test</a>
-        <p class="archive-date">12-21</p>
-      </div>
-    
-  </div>
-</section>
-  
+<main class="app-body project-app">
+  <div class="card-container" id="all-project"></div>
 </main>
-
 <script>
-  (function () {
-    var url = 'nateanl.github.io/archives/2019/02/index.html';
+  (function() {
+    var url = 'nateanl.github.io/project/index.html';
     $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
-  })();
+    $('.header').removeClass('fixed-header')
+    $.ajax({
+      headers: {
+        Accept: 'application/vnd.github.v3.raw'
+      },
+      type: 'get',
+      url: 'https://api.github.com/users/nateanl/repos',
+      success: function (data) {
+        var repos = data.sort(function(a, b) {
+          return (b.stargazers_count - a.stargazers_count)
+        }).slice(0, 6)
+        var cardHtml = repos.map(function(item) {
+          var description = item.description || ""
+          if (description.replace(/[\u0391-\uFFE5]/g, "aa").length > 72) {
+            description = description.slice(0, 72) + '...'
+          }
+          return (
+            '<section class="project-card">' +
+              '<a class="card-wrap" href="'+ item.html_url +'" target="_blank">' +
+                '<div class="card-header" data-name="'+ item.name +'"></div>' +
+                '<h3 class="card-title">' + item.name + '</h3>' +
+                '<p class="card-description">' + description + '</p>' +
+                '<div class="card-footer">' +
+                  '<span><i class="fa fa-star"></i>'+ item.stargazers_count +'</span>' +
+                  '<span><i class="fa fa-code-fork"></i>' + item.forks_count +'</span>' +
+                '</div>' +
+              '</a>' +
+            '</section>'
+          )
+        }).join('')
+        $('#all-project').html(cardHtml)
+        $('.card-header').each(function() {
+          var name = $(this).data('name');
+          $(this).geopattern(name);
+        })
+      }
+    });
+  })()
 </script>
 
     <div class="scroll-top">

@@ -10,7 +10,7 @@
   
   <title>
     
-      Zhaoheng Ni
+      Onssen: an open-source speech separation and enhancement library | Zhaoheng Ni
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -120,8 +120,8 @@
 </header>
 
     <div id="article-banner">
-  <h2></h2>
-  <p class="post-date">2020-02-10</p>
+  <h2>Onssen: an open-source speech separation and enhancement library</h2>
+  <p class="post-date">2020-03-05</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -129,17 +129,68 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><strong>Zhaoheng Ni</strong>, Rutuja Ubale, Yao Qian, Michael Mandel, Su-Youn Yoon, Abhinav Misra, and David Suendermann-Oeft. “Unusable Spoken Response Detection with BLSTM Neural Networks.” ISCSLP 2018</p>
-<p>Weicheng Ma, Kai Cao, <strong>Zhaoheng Ni</strong>, Peter Chin, and Xiang Li. “Sound Signal Processing with Seq2Tree Network.” In Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC-2018). 2018.</p>
-<p><strong>Zhaoheng Ni</strong>, Ahmet Cem Yuksel, Xiuyan Ni, Michael I. Mandel, and Lei Xie. “Confused or not confused?: Disentangling brain activity from eeg data using bidirectional lstm recurrent neural networks.” In Proceedings of the 8th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics, pp. 241-246. ACM, 2017.</p>
-<p>Weicheng Ma, Kai Cao, <strong>Zhaoheng Ni</strong>, Xiuyan Ni, and Sang Chin. “Sound signal processing based on seq2tree network.” In Proceedings of Interspeech workshop on Vocal Interactivity in-andbetween Humans, Animals and Robots. 2017.</p>
-<p>Yan Xu, Ji Hua, <strong>Zhaoheng Ni</strong>, Qinlang Chen, Yubo Fan, Sophia Ananiadou, I. Eric, Chao Chang, and Junichi Tsujii. “Anatomical entity recognition with a hierarchical framework augmented by external resources.” PloS one 9, no. 10 (2014): e108396.</p>
-</section>
+    <section class="markdown-content"><p>We are happy to release <code>onssen</code> (pronounced as 温泉, the Japanese spring), an PyTorch-based deep learning library for speech enhancement and speech separation. Feel free to fork it on <a href="https://github.com/speechLabBcCuny/onssen" target="_blank" rel="noopener">GitHub</a> and add your models to it :)</p>
+<h2 id="It-supports-the-following-separation-models"><a href="#It-supports-the-following-separation-models" class="headerlink" title="It supports the following separation models:"></a>It supports the following separation models:</h2><ul>
+<li>Deep Clustering</li>
+<li>Chimera Net</li>
+<li>Chimera++</li>
+<li>Phase Estimation Network</li>
+<li>Speech Enhancement with Restoration Layers</li>
+</ul>
+<h2 id="Supported-Dataset"><a href="#Supported-Dataset" class="headerlink" title="Supported Dataset"></a>Supported Dataset</h2><ul>
+<li>Wsj0-2mix (<a href="http://www.merl.com/demos/deep-clustering" target="_blank" rel="noopener">http://www.merl.com/demos/deep-clustering</a>)</li>
+<li>Daps (<a href="https://archive.org/details/daps_dataset" target="_blank" rel="noopener">https://archive.org/details/daps_dataset</a>)</li>
+<li>Edinburgh-TTS (<a href="https://datashare.is.ed.ac.uk/handle/10283/2791" target="_blank" rel="noopener">https://datashare.is.ed.ac.uk/handle/10283/2791</a>)</li>
+</ul>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>PyTorch</li>
+<li>LibRosa</li>
+<li>NumPy</li>
+</ul>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>You can simply use the existing config JSON file or customize your config file to train the enhancement or separation model.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py -c configs/dc_config.json</span><br></pre></td></tr></table></figure>
+<h2 id="Citing"><a href="#Citing" class="headerlink" title="Citing"></a>Citing</h2><p>If you plan to use <code>onssen</code> for your research project, please cite one of the following bibtex citations:</p>
+<pre><code>@inproceedings {onssen,
+    author = {Zhaoheng Ni and Michael Mandel},
+    title = &quot;ONSSEN: An Open-source Speech Separation and Enhancement Library&quot;,
+    publisher = &quot;under review&quot;,
+    year = 2019
+}
+
+@Misc{onssen,
+    author = {Zhaoheng Ni and Michael Mandel},
+    title = &quot;ONSSEN: An Open-source Speech Separation and Enhancement Library&quot;,
+    howpublished = {\url{https://github.com/speechLabBcCuny/onssen}},
+    year =        {2019}
+}
+</code></pre></section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#dnn" >
+    <span class="tag-code">dnn</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
     
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/04/25/speech-separation-demo/">
+        <span class="nav-arrow">← </span>
+        
+          Mask-dependent phase estimation for monaural speaker separation
+        
+      </a>
+    
+    
+  </div>
+
     <!-- NAV END -->
     <!-- 打赏 START -->
     
@@ -161,7 +212,7 @@
 
 <script>
   (function () {
-    var url = 'nateanl.github.io/publications/index.html';
+    var url = 'nateanl.github.io/2020/03/05/onssen/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -216,7 +267,7 @@
     var gitmentConfig = "nateanl";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "",
+        id: "Onssen: an open-source speech separation and enhancement library",
         owner: "nateanl",
         repo: "nateanl.github.io",
         oauth: {
