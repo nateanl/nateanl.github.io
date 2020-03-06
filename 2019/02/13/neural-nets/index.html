@@ -18,14 +18,10 @@
   <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/[object Object].min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   
-    <link rel="stylesheet" href="/css/plugins/gitment.css">
-  
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-  
-    <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -208,9 +204,7 @@
     
     <!-- 二维码 END -->
     
-      <!-- Gitment START -->
-      <div id="comments"></div>
-      <!-- Gitment END -->
+      <!-- No Comment -->
     
   </article>
   <!-- Article END -->
@@ -272,35 +266,27 @@
 
 
 
-  <script>
-    var gitmentConfig = "nateanl";
-    if (gitmentConfig !== 'undefined') {
-      var gitment = new Gitment({
-        id: "Build neural networks from scratch",
-        owner: "nateanl",
-        repo: "nateanl.github.io",
-        oauth: {
-          client_id: "62eab4c11f0968939d65",
-          client_secret: "7d54478cce99144f1291d51569f4c68a58088c34"
-        },
-        theme: {
-          render(state, instance) {
-            const container = document.createElement('div')
-            container.lang = "en-US"
-            container.className = 'gitment-container gitment-root-container'
-            container.appendChild(instance.renderHeader(state, instance))
-            container.appendChild(instance.renderEditor(state, instance))
-            container.appendChild(instance.renderComments(state, instance))
-            container.appendChild(instance.renderFooter(state, instance))
-            return container;
-          }
-        }
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: '62eab4c11f0968939d65',
+        clientSecret: '7d54478cce99144f1291d51569f4c68a58088c34',
+        repo: 'nateanl.github.io',
+        owner: 'undefined',
+        admin: ['[&#39;nateanl&#39;]'],
+        id: location.pathname,
+        distractionFreeMode: true,
+        language: 'en',
       })
-      gitment.render(document.getElementById('comments'))
-    }
-  </script>
-
-
+      gitalk.render('gitalk-container')
+     </script>
 
 
     <div class="scroll-top">
