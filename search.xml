@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>From forced alignment to acoustic model: a chicken-and-egg cycle in ASR</title>
+      <link href="/2020/09/01/force-aligment/"/>
+      <url>/2020/09/01/force-aligment/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>If you are familiar with <a href="https://kaldi-asr.org/" target="_blank" rel="noopener">Kaldi</a>, an open-source toolkit for speech recognition, then you must know those crazy script shits like this:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">steps/train_mono.sh  # mono-phone AM</span><br><span class="line">...</span><br><span class="line">steps/align_si.sh</span><br><span class="line">...</span><br><span class="line">steps/train_lda_mllt.sh # tri-phone AM</span><br><span class="line">...</span><br><span class="line">steps/align_si.sh</span><br><span class="line">...</span><br><span class="line">steps/train_sat.sh # tri-phone AM again</span><br></pre></td></tr></table></figure><p>Wow, why are there so many training and aligning loops, like it never stops?</p><p>If the ASR system is not an end-to-end system (i.e. from wav to text), it usually comprises an acoustic model (AM), which predicts the acoustic state of each frame, and a language model (LM), which predicts the word sequence out of the acoustic states. The acoustic model could be of any kind, for example, GMM, HMM, or DNN. But to train the acoustic model, we need to prepare the feature and label pairs. If the feature is MFCC, the label is the phonemes for the frames.</p><p>Here comes the problem, not all frames contains speech. Many of them have only noises, or silence. We need to correctly align the labels and the corresponding frames.</p><p>Do we have such accurate labels? No. We usually have the text label annotated by humans, however, they are usually in a sentence level and don’t have the precise start and end points for each phoneme. So, what should we do?</p><p>The first ASR genius who thought of the above scripts might say: Fxxk it, let’s just train it. I have the MFCC frames, and I have the phonemes, I just equally split the frames to each phoneme and feed them to the model, period.</p><p>Though the labels are not so clean, the model does learn something, which means, given a frame, the model can tell which phoneme has the highest likelihood, though it’s not always accurate.</p><p>Then the ASR genius said: wait, I can use this trained AM to do something. If it predicts the likelihood for all frames, why don’t I use the predictions to re-align the frames, and train another AM? So he did it. He aligns the frames based on the AM predictions and the text transcription. It is called “forced alignment”. Based on the pre-trained mono-phone AM, he generates new alignment labels and trains a tri-phone AM.</p><p>The tri-phone AM is more powerful than the mono-phone AM. That’s good. But the genius is not satisfied yet. Since we have a better AM, we can get better alignment results. Why not run another round of training, and get a better AM?</p><p>So you can see the trick here. If we want a better acoustic model, we need to prepare better alignments, but if we want better alignments, we need to train a better acoustic model. It’s a chicken-and-egg problem! But don’t worry, once we have a start (the mono AM), we are almost succeeding. We just keep looping the training and aligning process, like the EM algorithm.</p><p>We have talked about the relationship between forced alignment and acoustic model training. Force alignment is very useful especially in the multi-talker scenario. Now I want to ask you a question: What if have nothing but the wav files when we run the decoding for the multi-talker audio? Next time, I will talk about the methods to solve this problem…</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> asr </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Onssen: an open-source speech separation and enhancement library</title>
       <link href="/2020/03/05/onssen/"/>
       <url>/2020/03/05/onssen/</url>

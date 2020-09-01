@@ -10,7 +10,7 @@
   
   <title>
     
-      Zhaoheng Ni
+      From forced alignment to acoustic model: a chicken-and-egg cycle in ASR | Zhaoheng Ni
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -20,10 +20,32 @@
   
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
   
   
   
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src></script>
+    <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -116,8 +138,8 @@
 </header>
 
     <div id="article-banner">
-  <h2></h2>
-  <p class="post-date">2020-04-22</p>
+  <h2>From forced alignment to acoustic model: a chicken-and-egg cycle in ASR</h2>
+  <p class="post-date">2020-09-01</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -125,17 +147,46 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><strong>Zhaoheng Ni</strong>, Rutuja Ubale, Yao Qian, Michael Mandel, Su-Youn Yoon, Abhinav Misra, and David Suendermann-Oeft. “Unusable Spoken Response Detection with BLSTM Neural Networks.” ISCSLP 2018</p>
-<p>Weicheng Ma, Kai Cao, <strong>Zhaoheng Ni</strong>, Peter Chin, and Xiang Li. “Sound Signal Processing with Seq2Tree Network.” In Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC-2018). 2018.</p>
-<p><strong>Zhaoheng Ni</strong>, Ahmet Cem Yuksel, Xiuyan Ni, Michael I. Mandel, and Lei Xie. “Confused or not confused?: Disentangling brain activity from eeg data using bidirectional lstm recurrent neural networks.” In Proceedings of the 8th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics, pp. 241-246. ACM, 2017.</p>
-<p>Weicheng Ma, Kai Cao, <strong>Zhaoheng Ni</strong>, Xiuyan Ni, and Sang Chin. “Sound signal processing based on seq2tree network.” In Proceedings of Interspeech workshop on Vocal Interactivity in-andbetween Humans, Animals and Robots. 2017.</p>
-<p>Yan Xu, Ji Hua, <strong>Zhaoheng Ni</strong>, Qinlang Chen, Yubo Fan, Sophia Ananiadou, I. Eric, Chao Chang, and Junichi Tsujii. “Anatomical entity recognition with a hierarchical framework augmented by external resources.” PloS one 9, no. 10 (2014): e108396.</p>
+    <section class="markdown-content"><p>If you are familiar with <a href="https://kaldi-asr.org/" target="_blank" rel="noopener">Kaldi</a>, an open-source toolkit for speech recognition, then you must know those crazy script shits like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">steps/train_mono.sh  # mono-phone AM</span><br><span class="line">...</span><br><span class="line">steps/align_si.sh</span><br><span class="line">...</span><br><span class="line">steps/train_lda_mllt.sh # tri-phone AM</span><br><span class="line">...</span><br><span class="line">steps/align_si.sh</span><br><span class="line">...</span><br><span class="line">steps/train_sat.sh # tri-phone AM again</span><br></pre></td></tr></table></figure>
+<p>Wow, why are there so many training and aligning loops, like it never stops?</p>
+<p>If the ASR system is not an end-to-end system (i.e. from wav to text), it usually comprises an acoustic model (AM), which predicts the acoustic state of each frame, and a language model (LM), which predicts the word sequence out of the acoustic states. The acoustic model could be of any kind, for example, GMM, HMM, or DNN. But to train the acoustic model, we need to prepare the feature and label pairs. If the feature is MFCC, the label is the phonemes for the frames.</p>
+<p>Here comes the problem, not all frames contains speech. Many of them have only noises, or silence. We need to correctly align the labels and the corresponding frames.</p>
+<p>Do we have such accurate labels? No. We usually have the text label annotated by humans, however, they are usually in a sentence level and don’t have the precise start and end points for each phoneme. So, what should we do?</p>
+<p>The first ASR genius who thought of the above scripts might say: Fxxk it, let’s just train it. I have the MFCC frames, and I have the phonemes, I just equally split the frames to each phoneme and feed them to the model, period.</p>
+<p>Though the labels are not so clean, the model does learn something, which means, given a frame, the model can tell which phoneme has the highest likelihood, though it’s not always accurate.</p>
+<p>Then the ASR genius said: wait, I can use this trained AM to do something. If it predicts the likelihood for all frames, why don’t I use the predictions to re-align the frames, and train another AM? So he did it. He aligns the frames based on the AM predictions and the text transcription. It is called “forced alignment”. Based on the pre-trained mono-phone AM, he generates new alignment labels and trains a tri-phone AM.</p>
+<p>The tri-phone AM is more powerful than the mono-phone AM. That’s good. But the genius is not satisfied yet. Since we have a better AM, we can get better alignment results. Why not run another round of training, and get a better AM?</p>
+<p>So you can see the trick here. If we want a better acoustic model, we need to prepare better alignments, but if we want better alignments, we need to train a better acoustic model. It’s a chicken-and-egg problem! But don’t worry, once we have a start (the mono AM), we are almost succeeding. We just keep looping the training and aligning process, like the EM algorithm.</p>
+<p>We have talked about the relationship between forced alignment and acoustic model training. Force alignment is very useful especially in the multi-talker scenario. Now I want to ask you a question: What if have nothing but the wav files when we run the decoding for the multi-talker audio? Next time, I will talk about the methods to solve this problem…</p>
 </section>
     <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#asr" >
+    <span class="tag-code">asr</span>
+  </a>
+
+      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
     
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/03/05/onssen/">
+        <span class="nav-arrow">← </span>
+        
+          Onssen: an open-source speech separation and enhancement library
+        
+      </a>
+    
+    
+  </div>
+
     <!-- NAV END -->
     <!-- 打赏 START -->
     
@@ -155,7 +206,7 @@
 
 <script>
   (function () {
-    var url = 'nateanl.github.io/publications/index.html';
+    var url = 'nateanl.github.io/2020/09/01/force-aligment/';
     var banner = 'undefined'
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({

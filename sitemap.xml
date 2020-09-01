@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>nateanl.github.io/about/index.html</loc>
+    
+    <lastmod>2020-09-01T16:02:54.959Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>nateanl.github.io/2020/09/01/force-aligment/</loc>
+    
+    <lastmod>2020-09-01T15:58:06.847Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>nateanl.github.io/2019/02/25/word2vec/</loc>
     
     <lastmod>2020-03-05T14:14:49.924Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>nateanl.github.io/2019/04/25/speech-separation-demo/</loc>
     
     <lastmod>2020-03-05T13:47:03.214Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>nateanl.github.io/about/index.html</loc>
-    
-    <lastmod>2020-03-05T08:41:00.710Z</lastmod>
     
   </url>
   
