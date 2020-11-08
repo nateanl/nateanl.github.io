@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Zhaoheng Ni&#39;s blog">
+  <meta name="keyword" content>
+  
+    <link rel="shortcut icon" href="/css/images/logo.svg">
+  
+  <title>
+    
+      WPD++: An Improved Neural Beamformer for Simultaneous Speech Separation and Dereverberation | Zhaoheng Ni
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/[object Object].min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src></script>
+    <!-- MathJax support END --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.svg">
+</div>
+
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Zhaoheng Ni</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>WPD++: An Improved Neural Beamformer for Simultaneous Speech Separation and Dereverberation</h2>
+  <p class="post-date">2020-11-05</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>Accepted by SLT 2021</p>
+<p>Zhaoheng Ni (zni@gradcenter.cuny.edu), Yong Xu, Meng Yu, Bo Wu, Shixiong Zhang, Dong Yu, Michael I Mandel</p>
+<p align="center"> <img src="/images/WPD++.png" width="800"> </p>
+
+<p>This paper aims at eliminating the interfering speakers’ speech, additive noise, and reverberation from the noisy multi-talker speech mixture that benefits automatic speech recognition (ASR) backend. While the recently proposed Weighted Power minimization Distortionless response (WPD) beamformer can perform separation and dereverberation simultaneously, the noise cancellation component still has the potential to progress. We propose an improved neural WPD beamformer called “WPD++” by an enhanced beamforming module in the conventional WPD and a multi-objective loss function for the joint training. The beamforming module is improved by utilizing the spatio-temporal correlation. A multi-objective loss, including the complex spectra domain scale-invariant signal-to-noise ratio (C-Si-SNR) and the magnitude domain mean square error (Mag-MSE), is properly designed to make multiple constraints on the enhanced speech and the desired power of the dry clean signal. Joint training is conducted to optimize the complex-valued mask estimator and the WPD++ beamformer in an end-to-end way. The results show that the proposed WPD++ outperforms several state-of-the-art beamformers on the enhanced speech quality and word error rate (WER) of ASR.</p>
+<p>A Mandarin audio-visual dataset [1,2] is adopted for this study.</p>
+<p>Systems evaluated:</p>
+<ul>
+<li>Multi-tap MVDR with cRM: A multi-tap MVDR system with complex ratio mask (cRM) [1]</li>
+<li>WPD with cRM [3,4]</li>
+<li><strong>The proposed WPD++</strong></li>
+</ul>
+<p>All systems use the sane cRM estimation network that is a Conv-TasNet variant [5] with complex ratio mask</p>
+<h3 id="Demo-1-Simulated-1-speaker-noisy-mixture-for-target-speech-separation-Sorry-that-all-the-demos-are-recorded-in-Mandarin-Chinese"><a href="#Demo-1-Simulated-1-speaker-noisy-mixture-for-target-speech-separation-Sorry-that-all-the-demos-are-recorded-in-Mandarin-Chinese" class="headerlink" title="Demo 1: Simulated 1-speaker noisy mixture for target speech separation [Sorry that all the demos are recorded in Mandarin Chinese.]"></a>Demo 1: Simulated 1-speaker noisy mixture for target speech separation [Sorry that all the demos are recorded in Mandarin Chinese.]</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Mix (1 speaker + non-stationary additive noise</th>
+<th style="text-align:center">Reverberant clean (reference)</th>
+<th style="text-align:center">Dry clean (reference)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk1_mix.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk1_reverbclean.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk1_dryclean.png" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table width="1068" border="1">
+  <tr>
+    <td width="255">
+        <audio controls src="/audios/wpd++_demo/spk1_mix.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+        </audio>
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk1_reverbclean.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>    
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk1_dryclean.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </td>
+  </tr>
+</table>
+
+
+<p>&nbsp;&nbsp;</p>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Multi-tap MVDR with cRM</th>
+<th style="text-align:center">WPD with cRM</th>
+<th style="text-align:center"><strong>Proposed WPD++</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk1_mtmvdr.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk1_wpd.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk1_wpd++.png" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table width="1068" border="1">
+  <tr>
+    <td width="255">
+        <audio controls src="/audios/wpd++_demo/spk1_mtmvdr.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+        </audio>
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk1_wpd.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>    
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk1_wpd++.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;</p>
+
+<h3 id="Demo-2-Simulated-2-speaker-noisy-mixture-for-target-speech-separation-separation"><a href="#Demo-2-Simulated-2-speaker-noisy-mixture-for-target-speech-separation-separation" class="headerlink" title="Demo 2: Simulated 2-speaker noisy mixture for target speech separation separation"></a>Demo 2: Simulated 2-speaker noisy mixture for target speech separation separation</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Mix (2 speakers + non-stationary additive noise</th>
+<th style="text-align:center">Reverberant clean (reference)</th>
+<th style="text-align:center">Dry clean (reference)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk2_mix.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk2_reverbclean.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk2_dryclean.png" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table width="1068" border="1">
+  <tr>
+    <td width="255">
+        <audio controls src="/audios/wpd++_demo/spk2_mix.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+        </audio>
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk2_reverbclean.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>    
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk2_dryclean.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </td>
+  </tr>
+</table>
+
+
+<p>&nbsp;&nbsp;</p>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Multi-tap MVDR with cRM</th>
+<th style="text-align:center">WPD with cRM</th>
+<th style="text-align:center"><strong>Proposed WPD++</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk2_mtmvdr.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk2_wpd.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk2_wpd++.png" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table width="1068" border="1">
+  <tr>
+    <td width="255">
+        <audio controls src="/audios/wpd++_demo/spk2_mtmvdr.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+        </audio>
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk2_wpd.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>    
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk2_wpd++.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;</p>
+
+<h3 id="Demo-3-Simulated-3-speaker-noisy-mixture-for-target-speech-separation"><a href="#Demo-3-Simulated-3-speaker-noisy-mixture-for-target-speech-separation" class="headerlink" title="Demo 3: Simulated 3-speaker noisy mixture for target speech separation"></a>Demo 3: Simulated 3-speaker noisy mixture for target speech separation</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Mix (3 speakers + non-stationary additive noise</th>
+<th style="text-align:center">Reverberant clean (reference)</th>
+<th style="text-align:center">Dry clean (reference)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk3_mix.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk3_reverbclean.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk3_dryclean.png" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table width="1068" border="1">
+  <tr>
+    <td width="255">
+        <audio controls src="/audios/wpd++_demo/spk3_mix.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+        </audio>
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk3_reverbclean.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>    
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk3_dryclean.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </td>
+  </tr>
+</table>
+
+
+<p>&nbsp;&nbsp;</p>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Multi-tap MVDR with cRM</th>
+<th style="text-align:center">WPD with cRM</th>
+<th style="text-align:center"><strong>Proposed WPD++</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk3_mtmvdr.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk3_wpd.png" alt></td>
+<td style="text-align:center"><img src="/images/wpd++_demo/spk3_wpd++.png" alt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table width="1068" border="1">
+  <tr>
+    <td width="255">
+        <audio controls src="/audios/wpd++_demo/spk3_mtmvdr.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+        </audio>
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk3_wpd.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>    
+    </td>
+    <td width="255">
+    <audio controls src="/audios/wpd++_demo/spk3_wpd++.wav">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;</p>
+
+<p><strong>Real-world scenario: far-field recording and testing:</strong></p>
+<p><img src="/images/camera_and_mic.png" width="600" height="180"></p>
+<p>Real-world recording hardware device: 15-element non-uniform linear microphone array and 180 degree wide-angle camera</p>
+<p><img src="/images/DOA_estimation.png" width="1000" height="260"></p>
+<p>For the real-world videos, the 180-degree wide-angle camera is calibrated and synchronized with the 15-channel mic array. We estimate the rough DOA of the target speaker according to the location of the target speaker in the whole camera view [4]. Face detection is applied to track the target speaker's DOA. </p>
+
+<h3 id="Demo-4-Real-world-far-field-recording-and-testing-1"><a href="#Demo-4-Real-world-far-field-recording-and-testing-1" class="headerlink" title="Demo 4: Real-world far-field recording and testing 1:"></a>Demo 4: Real-world far-field recording and testing 1:</h3><table width="900">
+  <td width="450">
+  <video src="/videos/real_world_demo1_mixture.mp4" width="450" height="300" controls preload></video></td>
+  <td width="450">
+  <video src="/videos/real_world_demo1_mtmvdr.mp4" width="450" height="300" controls preload></video></td>
+</table>
+<table width="900" border="1">
+    <td width="450">Real-world scenario: far-field <strong>two-speaker mixture</strong> recorded by the camera and microphone array</td>
+    <td width="450">Real-world scenario: <strong>separated male voice</strong> by the multi-tap MVDR method.</td>
+</table>
+
+<table width="900">
+  <td width="450">
+  <video src="/videos/real_world_demo1_wpd.mp4" width="450" height="300" controls preload></video></td>
+  <td width="450">
+  <video src="/videos/real_world_demo1_wpd++.mp4" width="450" height="300" controls preload></video></td>
+</table>
+<table width="900" border="1">
+    <td width="450">Real-world scenario: <strong>separated male voice</strong> by the WPD method.</td>
+    <td width="450">Real-world scenario: <strong>separated male voice</strong> by the <strong>proposed WPD++ method</strong> (face detected in the red rectangle, used for DOA estimation).</td>
+</table>
+
+
+<h3 id="Demo-5-Real-world-far-field-recording-and-testing-2"><a href="#Demo-5-Real-world-far-field-recording-and-testing-2" class="headerlink" title="Demo 5: Real-world far-field recording and testing 2:"></a>Demo 5: Real-world far-field recording and testing 2:</h3><table width="900">
+  <td width="450">
+  <video src="/videos/real_world_demo2_mixture.mp4" width="450" height="300" controls preload></video></td>
+  <td width="450">
+  <video src="/videos/real_world_demo2_mtmvdr.mp4" width="450" height="300" controls preload></video></td>
+</table>
+<table width="900" border="1">
+    <td width="450">Real-world scenario: far-field <strong>two-speaker mixture</strong> recorded by the camera and microphone array</td>
+    <td width="450">Real-world scenario: <strong>separated female voice</strong> by the multi-tap MVDR method.</td>
+  </table>
+
+<table width="900">
+  <td width="450">
+  <video src="/videos/real_world_demo2_wpd.mp4" width="450" height="300" controls preload></video></td>
+  <td width="450">
+  <video src="/videos/real_world_demo2_wpd++.mp4" width="450" height="300" controls preload></video></td>
+</table>
+<table width="900" border="1">
+    <td width="450">Real-world scenario: <strong>separated female voice</strong> by the WPD method.</td>
+    <td width="450">Real-world scenario: <strong>separated female voice</strong> by the <strong>proposed WPD++ method</strong> (face detected in the red rectangle, used for DOA estimation).</td>
+</table>
+
+<p>&nbsp;</p>
+<p><strong>Reference: </strong></p>
+<p>[1] Xu, Yong, et al. "Neural Spatio-Temporal Beamformer for Target Speech Separation." accepted to Interspeech2020.</p>  
+<p>[2] Tan, Ke, et al. "Audio-visual speech separation and dereverberation with a two-stage multimodal network." IEEE Journal of Selected Topics in Signal Processing (2020).</p>
+<p>[3] Nakatani Tomohiro, et al. "A unified convolutional beamformer for simultaneous denoising and dereverberation." IEEE Signal Processing Letters, 2019</p>
+<p>[4] Zhang, Wangyou, et al. "End-to-End Far-Field Speech Recognition with Unified Dereverberation and Beamforming." arXiv preprint arXiv:2005.10479 (2020).</p>
+<p>[5] Luo, Yi, and Nima Mesgarani. "Conv-tasnet: Surpassing ideal time–frequency magnitude masking for speech separation." IEEE/ACM transactions on audio, speech, and language processing 27.8 (2019): 1256-1266.</p>
+<p>&nbsp;</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#dnn, asr, speech separation" >
+    <span class="tag-code">dnn, asr, speech separation</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/09/01/force-aligment/">
+        <span class="nav-arrow">← </span>
+        
+          From forced alignment to acoustic model: a chicken-and-egg cycle in ASR
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'nateanl.github.io/2020/11/05/wpd++/';
+    var banner = 'undefined'
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: '62eab4c11f0968939d65',
+        clientSecret: '7d54478cce99144f1291d51569f4c68a58088c34',
+        repo: 'page_comments',
+        owner: 'nateanl',
+        admin: ['nateanl'],
+        id: location.pathname,
+        distractionFreeMode: true,
+        language: 'en',
+      })
+      gitalk.render('gitalk-container')
+     </script>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    page view <span id="busuanzi_value_site_pv"></span>,
+    visitor <span id="busuanzi_value_site_uv"></span>
+    <br>
+    &copy; 2020 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    | Theme: <a href="https://github.com/yanm1ng/hexo-theme-vexo" target="_blank">vexo</a>
+  </p>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

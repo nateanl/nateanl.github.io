@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>nateanl.github.io/about/index.html</loc>
+    <loc>nateanl.github.io/2020/11/05/wpd++/</loc>
     
-    <lastmod>2020-09-01T16:02:54.959Z</lastmod>
+    <lastmod>2020-11-08T03:28:58.361Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>nateanl.github.io/2019/04/25/speech-separation-demo/</loc>
+    
+    <lastmod>2020-11-05T00:22:23.106Z</lastmod>
     
   </url>
   
   <url>
     <loc>nateanl.github.io/2020/09/01/force-aligment/</loc>
     
-    <lastmod>2020-09-01T15:58:06.847Z</lastmod>
+    <lastmod>2020-09-02T01:01:54.821Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>nateanl.github.io/about/index.html</loc>
+    
+    <lastmod>2020-09-01T16:02:54.959Z</lastmod>
     
   </url>
   
@@ -26,13 +40,6 @@
     <loc>nateanl.github.io/2020/03/05/onssen/</loc>
     
     <lastmod>2020-03-05T14:02:34.620Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>nateanl.github.io/2019/04/25/speech-separation-demo/</loc>
-    
-    <lastmod>2020-03-05T13:47:03.214Z</lastmod>
     
   </url>
   

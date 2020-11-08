@@ -158,7 +158,7 @@
 <p>Then the ASR genius said: wait, I can use this trained AM to do something. If it predicts the likelihood for all frames, why don’t I use the predictions to re-align the frames, and train another AM? So he did it. He aligns the frames based on the AM predictions and the text transcription. It is called “forced alignment”. Based on the pre-trained mono-phone AM, he generates new alignment labels and trains a tri-phone AM.</p>
 <p>The tri-phone AM is more powerful than the mono-phone AM. That’s good. But the genius is not satisfied yet. Since we have a better AM, we can get better alignment results. Why not run another round of training, and get a better AM?</p>
 <p>So you can see the trick here. If we want a better acoustic model, we need to prepare better alignments, but if we want better alignments, we need to train a better acoustic model. It’s a chicken-and-egg problem! But don’t worry, once we have a start (the mono AM), we are almost succeeding. We just keep looping the training and aligning process, like the EM algorithm.</p>
-<p>We have talked about the relationship between forced alignment and acoustic model training. Force alignment is very useful especially in the multi-talker scenario. Now I want to ask you a question: What if have nothing but the wav files when we run the decoding for the multi-talker audio? Next time, I will talk about the methods to solve this problem…</p>
+<p>We have talked about the relationship between forced alignment and acoustic model training. Force alignment is very useful especially in the multi-talker scenario. Now I want to ask you a question: What if we have nothing but the wav files? Next time, I will talk about the methods to solve this problem…</p>
 </section>
     <!-- Tags START -->
     
@@ -184,6 +184,13 @@
         
       </a>
     
+    
+      <a class="nav-right" href="/2020/11/05/wpd++/">
+        
+          WPD++: An Improved Neural Beamformer for Simultaneous Speech Separation and Dereverberation
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
